@@ -62,23 +62,21 @@ st.subheader("⚖️ Capacity vs Load Analysis")
 
 st.area_chart(df.set_index('Date')['Children in CBP custody'])
 
-# -------------------------
-# ML PREDICTION
-# -------------------------
-# -------------------------
-# ML PREDICTION (FIXED)
+# ML PREDICTION (FINAL FIX)
 # -------------------------
 st.subheader("🔮 Future Prediction (Next 10 Days)")
 
-# Remove NaN values
+# Clean data
 df_clean = df.dropna(subset=['Children in CBP custody']).copy()
-st.write("Missing values:", df['Children in CBP custody'].isna().sum())
 
 # Create Day column
 df_clean['Day'] = np.arange(len(df_clean))
 
-# Train model
+# ✅ DEFINE MODEL FIRST
 from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+
+# Train model
 model.fit(df_clean[['Day']], df_clean['Children in CBP custody'])
 
 # Predict future
