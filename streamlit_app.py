@@ -78,7 +78,7 @@ st.write("Missing values:", df['Children in CBP custody'].isna().sum())
 df_clean['Day'] = np.arange(len(df_clean))
 
 # Train model
-model = LinearRegression()
+from sklearn.linear_model import LinearRegression
 model.fit(df_clean[['Day']], df_clean['Children in CBP custody'])
 
 # Predict future
